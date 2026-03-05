@@ -1,0 +1,61 @@
+.section {
+  background-color: #f5f3f0;
+  padding: var(--space-section) 0;
+}
+
+.inner {
+  max-width: 900px;
+}
+
+.quoteWrap {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3vw, 40px);
+  position: relative;
+}
+
+.openMark {
+  font-family: var(--ff-display, 'Bebas Neue', sans-serif);
+  font-size: clamp(100px, 16vw, 220px);
+  line-height: 0.6;
+  color: #aa9064;
+  display: block;
+  user-select: none;
+}
+
+.quote {
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.quoteText {
+  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-size: clamp(22px, 3.5vw, 44px);
+  font-weight: 300;
+  font-style: italic;
+  color: #212b39;
+  line-height: 1.35;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: clamp(16px, 2vw, 28px);
+  border-top: 1px solid #aa9064;
+}
+
+.stars {
+  display: flex;
+  gap: 4px;
+}
+
+.reviewer {
+  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #212b39;
+}

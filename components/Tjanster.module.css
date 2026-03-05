@@ -1,0 +1,76 @@
+.section {
+  background-color: #212b39;
+  padding: var(--space-section) 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 72px);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.heading {
+  color: #f5f3f0;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.item {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(20px, 3vw, 36px) 0;
+  border-bottom: 1px solid rgba(170, 144, 100, 0.35);
+  cursor: default;
+  transition: background-color 250ms ease;
+}
+
+.item:hover {
+  background-color: rgba(170, 144, 100, 0.04);
+}
+
+.item:hover .serviceName {
+  color: #aa9064;
+}
+
+.itemLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.serviceName {
+  color: #f5f3f0;
+  transition: color 250ms ease;
+}
+
+.itemRight {
+  flex-shrink: 0;
+}
+
+.price {
+  font-family: var(--ff-display, 'Bebas Neue', sans-serif);
+  font-size: clamp(24px, 3vw, 40px);
+  letter-spacing: 0.06em;
+  color: #aa9064;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
