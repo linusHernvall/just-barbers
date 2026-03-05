@@ -32,16 +32,6 @@
   gap: 24px;
   padding: clamp(20px, 3vw, 36px) 0;
   border-bottom: 1px solid rgba(170, 144, 100, 0.35);
-  cursor: default;
-  transition: background-color 250ms ease;
-}
-
-.item:hover {
-  background-color: rgba(170, 144, 100, 0.04);
-}
-
-.item:hover .serviceName {
-  color: #aa9064;
 }
 
 .itemLeft {
@@ -52,7 +42,6 @@
 
 .serviceName {
   color: #f5f3f0;
-  transition: color 250ms ease;
 }
 
 .itemRight {

@@ -60,11 +60,6 @@
 .secondaryImage {
   object-fit: cover;
   object-position: top;
-  transition: transform 600ms ease;
-}
-
-.secondaryImageWrap:hover .secondaryImage {
-  transform: scale(1.03);
 }
 
 .contentText {

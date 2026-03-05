@@ -4,58 +4,158 @@
 }
 
 .inner {
-  max-width: 900px;
-}
-
-.quoteWrap {
   display: flex;
   flex-direction: column;
-  gap: clamp(24px, 3vw, 40px);
-  position: relative;
+  gap: clamp(40px, 5vw, 72px);
 }
 
-.openMark {
-  font-family: var(--ff-display, 'Bebas Neue', sans-serif);
-  font-size: clamp(100px, 16vw, 220px);
-  line-height: 0.6;
-  color: #aa9064;
-  display: block;
-  user-select: none;
+/* ============================
+   SECTION HEADER
+   ============================ */
+.sectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.quote {
-  border: none;
-  margin: 0;
-  padding: 0;
-}
-
-.quoteText {
-  font-family: var(--ff-body, 'Inter', sans-serif);
-  font-size: clamp(22px, 3.5vw, 44px);
-  font-weight: 300;
-  font-style: italic;
+.heading {
   color: #212b39;
-  line-height: 1.35;
 }
 
-.footer {
+.subHeading {
+  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-size: clamp(14px, 1.4vw, 16px);
+  font-weight: 300;
+  color: #6b7280;
+  line-height: 1.7;
+  max-width: 480px;
+}
+
+/* ============================
+   CAROUSEL AREA
+   ============================ */
+.carouselArea {
+  position: relative;
+  overflow: hidden;
+  margin: 0 -20px; /* Bleed out slightly for cards to clip at edges */
+  padding: 0 20px;
+}
+
+.track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: clamp(16px, 2.5vw, 32px);
+  width: max-content;
+  animation: marquee 120s linear infinite;
+}
+
+.track.paused {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+/* ============================
+   REVIEW CARD
+   ============================ */
+.card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding-top: clamp(16px, 2vw, 28px);
-  border-top: 1px solid #aa9064;
+  gap: 20px;
+  padding: clamp(24px, 3vw, 36px);
+  background-color: #ffffff;
+  border-left: 2px solid #aa9064;
+  
+  /* Desktop: 3 cards visible (minus gaps) */
+  flex: 0 0 calc((100vw - clamp(24px, 10vw, 160px) - (2 * clamp(16px, 2.5vw, 32px))) / 3);
+  min-width: 320px;
+}
+
+@media (max-width: 1024px) {
+  .card {
+     flex: 0 0 400px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    /* Mobile: 1 card visible */
+    flex: 0 0 calc(100vw - 40px);
+    min-width: unset;
+  }
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .stars {
   display: flex;
-  gap: 4px;
+  gap: 3px;
 }
 
-.reviewer {
+.googleBadge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.googleLabel {
   font-family: var(--ff-body, 'Inter', sans-serif);
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.cardQuote {
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.cardText {
+  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 300;
+  font-style: italic;
+  color: #212b39;
+  line-height: 1.65;
+}
+
+.cardFooter {
+  padding-top: 16px;
+  border-top: 1px solid rgba(170, 144, 100, 0.25);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.cardAuthor {
+  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #212b39;
 }
+
+.cardMeta {
+  font-family: var(--ff-body, 'Inter', sans-serif);
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
