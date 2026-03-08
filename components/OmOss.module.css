@@ -1,19 +1,22 @@
 .section {
-  background-color: #f5f3f0;
-  padding: var(--space-section) 0;
+  background-color: var(--color-bg, #f5f3f0);
+  padding: clamp(100px, 15vw, 200px) 0;
+  overflow: hidden;
 }
 
 .inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(40px, 6vw, 120px);
-  align-items: start;
+  align-items: center;
 }
 
 .left {
   display: flex;
   flex-direction: column;
   gap: clamp(20px, 2.5vw, 32px);
+  position: relative;
+  z-index: 5;
 }
 
 .heading {
@@ -31,30 +34,104 @@
 .right {
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding-top: clamp(60px, 8vw, 120px);
+  justify-content: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin-right: clamp(20px, 4vw, 60px);
+}
+
+.goldBlock {
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 65%;
+  height: 85%;
+  border: 1px solid var(--color-gold, #aa9064);
+  z-index: 0;
+}
+
+.imageWrapper {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.5);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
 }
 
 .pullQuote {
-  border-left: 1px solid #aa9064;
-  padding-left: clamp(24px, 3vw, 40px);
+  position: absolute;
+  bottom: -40px;
+  left: -100px;
+  z-index: 3;
+  pointer-events: none;
 }
 
-.quoteText {
-  font-family: var(--ff-body, 'Inter', sans-serif);
-  font-size: clamp(20px, 2.5vw, 32px);
-  font-weight: 300;
-  font-style: italic;
-  color: #212b39;
-  line-height: 1.4;
+.quoteText, .quoteHighlight {
+  font-family: var(--font-display, 'Bebas Neue', sans-serif);
+  font-size: clamp(40px, 6vw, 80px);
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin: 0;
+  -webkit-text-stroke: 1px var(--color-gold, #aa9064);
+  color: var(--color-bg, #f5f3f0);
+}
+
+.quoteHighlight {
+  color: var(--color-gold, #aa9064);
+  -webkit-text-stroke: 0;
+  text-shadow: none;
+  margin-left: clamp(10px, 3vw, 30px);
+}
+
+@media (max-width: 1024px) {
+  .pullQuote {
+    left: -80px;
+  }
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: clamp(80px, 12vw, 120px) 0;
+  }
+  
   .inner {
     grid-template-columns: 1fr;
+    gap: 100px;
   }
 
   .right {
-    padding-top: 0;
+    justify-content: center;
+  }
+
+  .imageContainer {
+    margin-right: 0;
+    max-width: calc(100% - 40px);
+    margin-left: 0;
+  }
+
+  .goldBlock {
+    right: -20px;
+    width: 80%;
+  }
+
+  .pullQuote {
+    left: -10px;
+    bottom: -30px;
+  }
+
+  .quoteText, .quoteHighlight {
+    font-size: clamp(40px, 10vw, 60px);
+    -webkit-text-stroke: 1px var(--color-gold, #aa9064);
   }
 }

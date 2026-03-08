@@ -1,10 +1,11 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import Image from "next/image";
+import { motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 import styles from "./OmOss.module.css";
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 40 },
   visible: (delay: number) => ({
     opacity: 1,
@@ -16,6 +17,14 @@ const fadeUp = {
 export default function OmOss() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-15%" });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  const quoteY = useTransform(scrollYProgress, [0, 1], ["15%", "-15%"]);
+  const blockY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
 
   return (
     <section id="om-oss" className={styles.section} ref={ref}>
@@ -82,10 +91,30 @@ export default function OmOss() {
           animate={inView ? "visible" : "hidden"}
           variants={fadeUp}
         >
-          <div className={styles.pullQuote}>
-            <p className={styles.quoteText}>
-              &ldquo;Vi klipper inte hår. Vi skapar uttryck.&rdquo;
-            </p>
+          <div className={styles.imageContainer}>
+            <motion.div className={styles.goldBlock} style={{ y: blockY }} />
+            
+
+            <motion.div className={styles.imageWrapper} style={{ y: imageY }}>
+              <Image
+                src="/images/about-image.png"
+                alt="Hantverk och estetik på Just Barbers"
+                width={600}
+                height={750}
+                quality={90}
+                className={styles.image}
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </motion.div>
+            
+            <motion.div className={styles.pullQuote} style={{ y: quoteY }}>
+              <p className={styles.quoteText}>
+                &ldquo;Vi klipper<br />inte hår.
+              </p>
+              <p className={styles.quoteHighlight}>
+                Vi skapar<br />uttryck.&rdquo;
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>

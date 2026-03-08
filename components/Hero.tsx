@@ -1,10 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 
-const fadeVariants = {
+const fadeVariants: Variants = {
   hidden: { opacity: 0, y: 24 },
   visible: (delay: number) => ({
     opacity: 1,
@@ -17,7 +17,7 @@ const fadeVariants = {
   }),
 };
 
-const headlineVariants = {
+const headlineVariants: Variants = {
   hidden: { opacity: 0, scale: 0.96 },
   visible: {
     opacity: 1,
