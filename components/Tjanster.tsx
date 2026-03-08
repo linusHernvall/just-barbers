@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import styles from "./Tjanster.module.css";
 
 const services = [
@@ -13,13 +13,20 @@ const services = [
   { name: "Fade & Design", desc: "Gradient fade med vald design", price: "400 kr" },
 ];
 
-const stagger = {
+const stagger: Variants = {
   visible: { transition: { staggerChildren: 0.08 } },
 };
 
-const itemVariant = {
+const itemVariant: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.7, 
+      ease: [0.16, 1, 0.3, 1] 
+    } 
+  },
 };
 
 export default function Tjanster() {
@@ -57,6 +64,17 @@ export default function Tjanster() {
               </div>
             </motion.div>
           ))}
+        </motion.div>
+        
+        <motion.div 
+          className={styles.ctaWrapper}
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <a href="#kontakt" className="btn-gold">
+            Boka tid
+          </a>
         </motion.div>
       </div>
     </section>

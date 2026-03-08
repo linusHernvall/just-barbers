@@ -98,6 +98,16 @@
   border: 1px solid rgba(170, 144, 100, 0.25);
 }
 
+.map {
+  border: 0;
+  filter: grayscale(100%) contrast(1.1);
+  transition: filter 0.5s ease;
+}
+
+.mapWrap:hover .map {
+  filter: grayscale(0%) contrast(1);
+}
+
 @media (max-width: 768px) {
   .inner {
     grid-template-columns: 1fr;

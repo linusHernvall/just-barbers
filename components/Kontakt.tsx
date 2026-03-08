@@ -1,16 +1,15 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, Variants } from "framer-motion";
 import styles from "./Kontakt.module.css";
 
 const hours = [
-  { day: "Måndag – Fredag", time: "10:00 – 19:00" },
-  { day: "Lördag", time: "10:00 – 17:00" },
+  { day: "Måndag – Lördag", time: "12:00 – 18:00" },
   { day: "Söndag", time: "Stängt" },
 ];
 
-const fadeUp = {
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 32 },
   visible: (d: number) => ({
     opacity: 1,
@@ -37,19 +36,19 @@ export default function Kontakt() {
           <motion.div className={styles.addressBlock}
             custom={0.15} initial="hidden" animate={inView ? "visible" : "hidden"} variants={fadeUp}>
             <h2 className={`display-lg ${styles.heading}`}>Just Barbers</h2>
-            <p className={styles.addressLine}>Kungsbackavägen 12</p>
-            <p className={styles.addressLine}>431 44 Mölndal</p>
+            <p className={styles.addressLine}>Göteborgsvägen 25</p>
+            <p className={styles.addressLine}>431 30 Mölndal</p>
           </motion.div>
 
           <span className="gold-line" />
 
           <motion.a
-            href="tel:+46317001234"
+            href="tel:+46736009757"
             className={styles.phone}
             custom={0.3} initial="hidden" animate={inView ? "visible" : "hidden"} variants={fadeUp}
-            aria-label="Ring oss på 031-700 12 34"
+            aria-label="Ring oss på 073-600 97 57"
           >
-            031-700 12 34
+            073-600 97 57
           </motion.a>
 
           <motion.a
@@ -92,10 +91,10 @@ export default function Kontakt() {
         >
           <iframe
             title="Just Barbers karta"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2134.2!2d12.0!3d57.65!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTfCsDM5JzAwLjAiTiAxMsKwMDAnMDAuMCJF!5e0!3m2!1ssv!2sse!4v1000000000000!5m2!1ssv!2sse"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2134.384521728211!2d12.0147398!3d57.65894889999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x464ff233f814ab27%3A0x84bec8d8699c76d!2zR8O2dGVib3Jnc3bDpGdlbiAyNSwgNDMxIDMwIE3DtmxuZGFs!5e0!3m2!1sen!2sse!4v1772972945641!5m2!1sen!2sse"
             width="100%"
             height="100%"
-            style={{ border: 0, filter: "grayscale(100%) contrast(1.1)" }}
+            className={styles.map}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

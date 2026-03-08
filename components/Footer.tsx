@@ -32,7 +32,7 @@ export default function Footer() {
         </nav>
 
         <div className={styles.contact}>
-          <a href="tel:+46317001234" className={styles.contactLink}>031-700 12 34</a>
+          <a href="tel:+46736009757" className={styles.contactLink}>073-600 97 57</a>
           <a href="mailto:hej@justbarbers.se" className={styles.contactLink}>hej@justbarbers.se</a>
         </div>
       </div>
@@ -42,7 +42,7 @@ export default function Footer() {
           &copy; {year} Just Barbers. Alla rättigheter förbehållna.
         </p>
         <p className={styles.credit}>
-          Kungsbackavägen 12, Mölndal
+          Göteborgsvägen 25, Mölndal
         </p>
       </div>
     </footer>

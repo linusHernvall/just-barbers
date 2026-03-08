@@ -63,3 +63,9 @@
     gap: 8px;
   }
 }
+
+.ctaWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(24px, 4vw, 40px);
+}
