@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import styles from "./Recensioner.module.css";
+import { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const StarIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -10,18 +9,6 @@ const StarIcon = () => (
       d="M8 1l1.796 4.763H15l-4.102 2.474 1.796 4.763L8 10.526l-4.694 2.474 1.796-4.763L1 5.763h5.204L8 1z"
       fill="#aa9064"
     />
-  </svg>
-);
-
-const ChevronLeft = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-    <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-);
-
-const ChevronRight = () => (
-  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-    <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
@@ -80,26 +67,30 @@ const reviews: Review[] = [
   },
 ];
 
-const DESKTOP_PER_PAGE = 3;
-
 function ReviewCard({ review }: { review: Review }) {
   return (
-    <article className={styles.card}>
-      <div className={styles.cardHeader}>
-        <div className={styles.stars} role="img" aria-label={`${review.rating} av 5 stjärnor`}>
+    <article
+      className="flex flex-col gap-5 p-[clamp(24px,3vw,36px)] bg-white border-l-2 border-gold flex-[0_0_calc((100vw-clamp(24px,10vw,160px)-(2*clamp(16px,2.5vw,32px)))/3)] min-w-[320px] max-[1024px]:flex-[0_0_400px] max-md:flex-[0_0_calc(100vw-40px)] max-md:min-w-0"
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex gap-[3px]" role="img" aria-label={`${review.rating} av 5 stjärnor`}>
           {[...Array(review.rating)].map((_, i) => <StarIcon key={i} />)}
         </div>
-        <div className={styles.googleBadge}>
+        <div className="flex items-center gap-[5px]">
           <GoogleIcon />
-          <span className={styles.googleLabel}>Google</span>
+          <span className="font-body text-[10px] font-medium tracking-[0.1em] uppercase text-muted">Google</span>
         </div>
       </div>
-      <blockquote className={styles.cardQuote}>
-        <p className={styles.cardText}>&ldquo;{review.text}&rdquo;</p>
+
+      <blockquote className="flex-1 m-0 p-0 border-none">
+        <p className="font-body text-review-text font-light italic text-navy leading-[1.65]">
+          &ldquo;{review.text}&rdquo;
+        </p>
       </blockquote>
-      <footer className={styles.cardFooter}>
-        <p className={styles.cardAuthor}>{review.author}</p>
-        <p className={styles.cardMeta}>{review.location} · {review.date}</p>
+
+      <footer className="pt-4 border-t border-[rgba(170,144,100,0.25)] flex flex-col gap-[3px]">
+        <p className="font-body text-[12px] font-medium tracking-[0.1em] uppercase text-navy">{review.author}</p>
+        <p className="font-body text-[11px] font-light tracking-[0.06em] text-muted">{review.location} · {review.date}</p>
       </footer>
     </article>
   );
@@ -107,33 +98,72 @@ function ReviewCard({ review }: { review: Review }) {
 
 export default function Recensioner() {
   const [isPaused, setIsPaused] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  // Triple the reviews to ensure plenty of room for dragging in both directions
+  // Triple the reviews to ensure plenty of room for the marquee
   const marqueeReviews = [...reviews, ...reviews, ...reviews];
 
+  // Click-outside handler: resumes the carousel on mobile when tapping outside
+  useEffect(() => {
+    if (!isPaused) return;
+
+    function handleClickOutside(e: MouseEvent | TouchEvent) {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setIsPaused(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isPaused]);
+
+  // Mobile tap: toggle pause (only on touch-primary devices)
+  function handleTap(e: React.MouseEvent | React.TouchEvent) {
+    if (window.matchMedia("(hover: none)").matches) {
+      e.stopPropagation();
+      setIsPaused((prev) => !prev);
+    }
+  }
+
   return (
-    <section id="recensioner" className={styles.section}>
-      <div className={`container ${styles.inner}`}>
-        <div className={styles.sectionHeader}>
-          <p className="label" style={{ color: "#aa9064" }}>Vad våra kunder säger</p>
-          <h2 className={`display-xl ${styles.heading}`}>Recensioner</h2>
-          <p className={styles.subHeading}>Läs vad Mölndals bästa kunder har att säga om oss på Google.</p>
+    <section id="recensioner" className="bg-bg py-section">
+      <div className="w-full max-w-container mx-auto px-[clamp(20px,5vw,80px)] flex flex-col gap-[clamp(40px,5vw,72px)]">
+
+        {/* Header */}
+        <div className="flex flex-col gap-4">
+          <p className="font-body text-label font-medium tracking-[0.15em] uppercase text-gold">
+            Vad våra kunder säger
+          </p>
+          <h2 className="font-display text-display-xl uppercase text-navy">Recensioner</h2>
+          <p className="font-body text-[clamp(14px,1.4vw,16px)] font-light text-muted leading-[1.7] max-w-[480px]">
+            Läs vad Mölndals bästa kunder har att säga om oss på Google.
+          </p>
         </div>
 
-        <div 
-          className={styles.carouselArea}
+        {/* Marquee carousel */}
+        <div
+          ref={wrapperRef}
+          className="relative overflow-hidden -mx-5 px-5"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onClick={handleTap}
         >
           <motion.div
-            className={`${styles.track} ${isPaused ? styles.paused : ""}`}
+            className="flex flex-nowrap gap-[clamp(16px,2.5vw,32px)] w-max animate-marquee"
+            style={{ animationPlayState: isPaused ? "paused" : "running" }}
             initial={false}
           >
             {marqueeReviews.map((review, idx) => (
               <ReviewCard key={`${review.author}-${idx}`} review={review} />
             ))}
           </motion.div>
+
         </div>
+
       </div>
     </section>
   );
