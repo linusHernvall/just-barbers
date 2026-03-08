@@ -32,14 +32,14 @@ export default function OmOss() {
         {/* Left: Text */}
         <div className="flex flex-col gap-[clamp(20px,2.5vw,32px)] relative z-[5]">
           <motion.p
-            className="font-body text-label font-medium tracking-[0.15em] uppercase text-muted"
-            custom={0}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            variants={fadeUp}
-          >
-            Om oss
-          </motion.p>
+                    className="font-body text-label font-medium tracking-[0.15em] uppercase text-gold"
+                    custom={0}
+                    initial="hidden"
+                    animate={inView ? "visible" : "hidden"}
+                    variants={fadeUp}
+                  >
+                    Om oss
+                  </motion.p>
 
           <motion.h2
             className="font-display text-display-xl uppercase text-navy"

@@ -68,7 +68,7 @@ export default function Tjanster() {
             >
               <div className="flex flex-col gap-1.5">
                 <h3 className="font-display text-display-md uppercase text-bg">{service.name}</h3>
-                <p className="font-body text-body-light font-light text-muted leading-[1.7]">{service.desc}</p>
+                <p className="font-body text-body-light font-light text-muted-on-navy leading-[1.7]">{service.desc}</p>
               </div>
               <div className="flex-shrink-0">
                 <span className="font-display text-service-price tracking-[0.06em] text-gold whitespace-nowrap">

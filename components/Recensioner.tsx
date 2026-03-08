@@ -41,7 +41,7 @@ const reviews: Review[] = [
     author: "Johan K.",
     location: "Göteborg",
     rating: 5,
-    text: "Fantastisk service och otroligt skickliga händer. Min skägg har aldrig sett bättre ut. Går tillbaka varje månad utan tvekan.",
+    text: "Fantastisk service och otroligt skickliga händer. Mitt skägg har aldrig sett bättre ut. Går tillbaka varje månad utan tvekan.",
     date: "Oktober 2024",
   },
   {

@@ -15,7 +15,8 @@ const config: Config = {
         navy: "#212b39",
         gold: "#aa9064",
         "gold-light": "#c4a87a",
-        muted: "#6b7280",
+        muted: "#52525b",
+        "muted-on-navy": "#94a3b8",
         white: "#ffffff",
         // Semi-transparent variants used inline
         "gold-border": "rgba(170, 144, 100, 0.15)",
@@ -23,7 +24,7 @@ const config: Config = {
         "gold-border-lg": "rgba(170, 144, 100, 0.35)",
         "navy-overlay-light": "rgba(33, 43, 57, 0.15)",
         "navy-overlay-fade": "rgba(33, 43, 57, 0)",
-        "muted-faded": "rgba(107, 114, 128, 0.5)",
+        "muted-faded": "rgba(148, 163, 184, 0.5)",
       },
 
       // ────────────────────────────────────────────────────────

@@ -45,8 +45,8 @@ export default function Kontakt() {
             variants={fadeUp}
           >
             <h2 className="font-display text-display-lg uppercase text-bg">Just Barbers</h2>
-            <p className="font-body text-address-text font-light text-muted leading-[1.7]">Göteborgsvägen 25</p>
-            <p className="font-body text-address-text font-light text-muted leading-[1.7]">431 30 Mölndal</p>
+            <p className="font-body text-address-text font-light text-muted-on-navy leading-[1.7]">Göteborgsvägen 25</p>
+            <p className="font-body text-address-text font-light text-muted-on-navy leading-[1.7]">431 30 Mölndal</p>
           </motion.div>
 
           <span className="block w-full h-px bg-gold" />
@@ -65,7 +65,7 @@ export default function Kontakt() {
 
           <motion.a
             href="mailto:hej@justbarbers.se"
-            className="font-body text-[clamp(13px,1.3vw,16px)] font-light tracking-[0.06em] text-muted transition-colors duration-fast ease hover:text-gold"
+            className="font-body text-[clamp(13px,1.3vw,16px)] font-light tracking-[0.06em] text-muted-on-navy transition-colors duration-fast ease hover:text-gold"
             custom={0.4}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
@@ -88,7 +88,7 @@ export default function Kontakt() {
                 key={day}
                 className="flex justify-between items-baseline gap-4 py-[10px] border-b border-[rgba(170,144,100,0.2)]"
               >
-                <span className="font-body text-[13px] font-normal tracking-[0.08em] uppercase text-muted">
+                <span className="font-body text-[13px] font-normal tracking-[0.08em] uppercase text-muted-on-navy">
                   {day}
                 </span>
                 <span className="font-display text-hour-time tracking-[0.06em] text-bg">

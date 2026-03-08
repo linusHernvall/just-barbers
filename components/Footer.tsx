@@ -27,9 +27,6 @@ export default function Footer() {
           >
             Just Barbers
           </a>
-          <p className="font-body text-[11px] font-normal tracking-[0.14em] uppercase text-muted">
-            Mölndal · Sverige
-          </p>
         </div>
 
         {/* Nav links */}
@@ -38,7 +35,7 @@ export default function Footer() {
             <a
               key={link.label}
               href={link.href}
-              className="footer-link font-body text-[11px] font-medium tracking-[0.14em] uppercase text-muted cursor-pointer transition-colors duration-fast ease w-fit hover:text-bg"
+              className="footer-link font-body text-[11px] font-medium tracking-[0.14em] uppercase text-muted-on-navy cursor-pointer transition-colors duration-fast ease w-fit hover:text-bg"
             >
               {link.label}
             </a>
@@ -49,13 +46,13 @@ export default function Footer() {
         <div className="flex flex-col gap-[10px] items-end max-md:items-start max-md:col-span-2 max-[480px]:col-span-1">
           <a
             href="tel:+46736009757"
-            className="font-body text-[12px] font-light tracking-[0.08em] text-muted transition-colors duration-fast ease cursor-pointer hover:text-gold"
+            className="font-body text-[12px] font-light tracking-[0.08em] text-muted-on-navy transition-colors duration-fast ease cursor-pointer hover:text-gold"
           >
             073-600 97 57
           </a>
           <a
             href="mailto:hej@justbarbers.se"
-            className="font-body text-[12px] font-light tracking-[0.08em] text-muted transition-colors duration-fast ease cursor-pointer hover:text-gold"
+            className="font-body text-[12px] font-light tracking-[0.08em] text-muted-on-navy transition-colors duration-fast ease cursor-pointer hover:text-gold"
           >
             hej@justbarbers.se
           </a>
@@ -64,10 +61,10 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="w-full max-w-container mx-auto px-[clamp(20px,5vw,80px)] flex justify-between items-center flex-wrap gap-3 max-[480px]:flex-col max-[480px]:items-start">
-        <p className="font-body text-[11px] font-light tracking-[0.06em] text-muted-faded">
+        <p className="font-body text-[11px] font-light tracking-[0.06em] text-muted-on-navy">
           &copy; {year} Just Barbers. Alla rättigheter förbehållna.
         </p>
-        <p className="font-body text-[11px] font-light tracking-[0.06em] text-muted-faded">
+        <p className="font-body text-[11px] font-light tracking-[0.06em] text-muted-on-navy">
           Göteborgsvägen 25, Mölndal
         </p>
       </div>
