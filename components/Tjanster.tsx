@@ -12,6 +12,19 @@ const services = [
   { name: "Fade & Design", desc: "Gradient fade med vald design", price: "400 kr" },
 ];
 
+const fadeVariants: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.9,
+      delay,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  }),
+};
+
 const stagger: Variants = {
   visible: { transition: { staggerChildren: 0.08 } },
 };
@@ -22,7 +35,7 @@ const itemVariant: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.7,
+      duration: 0.9,
       ease: [0.16, 1, 0.3, 1],
     },
   },
@@ -39,9 +52,10 @@ export default function Tjanster() {
         {/* Header */}
         <motion.div
           className="flex flex-col gap-4"
-          initial={{ opacity: 0, y: 32 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeVariants}
+          custom={0}
         >
           <p className="font-body text-label font-medium tracking-[0.15em] uppercase text-gold">
             Tjänster &amp; priser
@@ -82,9 +96,10 @@ export default function Tjanster() {
         {/* CTA */}
         <motion.div
           className="flex justify-center mt-[clamp(24px,4vw,40px)]"
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={fadeVariants}
+          custom={0.4}
         >
           <a
             href="#kontakt"

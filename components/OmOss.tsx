@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useInView, useScroll, useTransform, Variants } from "framer-motion";
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 24 },
   visible: (delay: number) => ({
     opacity: 1,
     y: 0,
