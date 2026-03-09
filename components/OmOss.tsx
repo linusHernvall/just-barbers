@@ -26,8 +26,8 @@ export default function OmOss() {
   const blockY = useTransform(scrollYProgress, [0, 1], ["5%", "-5%"]);
 
   return (
-    <section id="om-oss" className="bg-bg py-[clamp(100px,15vw,200px)] overflow-hidden" ref={ref}>
-      <div className="w-full max-w-container mx-auto px-[clamp(20px,5vw,80px)] grid grid-cols-2 gap-[clamp(40px,6vw,120px)] items-center max-md:grid-cols-1 max-md:py-[clamp(80px,12vw,120px)] max-md:gap-[100px]">
+    <section id="om-oss" className="bg-bg py-section overflow-hidden" ref={ref}>
+      <div className="w-full max-w-container mx-auto px-[clamp(20px,5vw,80px)] grid grid-cols-2 gap-[clamp(40px,6vw,120px)] items-center max-md:grid-cols-1 max-md:gap-[100px]">
 
         {/* Left: Text */}
         <div className="flex flex-col gap-[clamp(20px,2.5vw,32px)] relative z-[5]">
@@ -48,7 +48,7 @@ export default function OmOss() {
             animate={inView ? "visible" : "hidden"}
             variants={fadeUp}
           >
-            Hantverket<br />är allt vi<br />bryr oss om.
+            Hantverket<br />är allt vi<br />bryr oss om
           </motion.h2>
 
           <motion.div

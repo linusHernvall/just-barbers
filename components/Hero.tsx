@@ -33,12 +33,12 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative w-full h-svh min-h-[600px] grid grid-cols-2 overflow-hidden max-md:grid-cols-1 max-md:grid-rows-[55vh_1fr] max-md:h-auto max-md:min-h-svh"
+      className="relative w-full h-svh min-h-[600px] grid grid-cols-2 overflow-hidden max-md:grid-cols-1 max-md:h-svh"
       aria-label="Hero"
     >
-      {/* Left: Full-bleed barbershop photo */}
+      {/* Left: Full-bleed barbershop photo (desktop) / Full-screen image (mobile) */}
       <motion.div
-        className="relative overflow-hidden max-md:row-start-1"
+        className="relative overflow-hidden max-md:absolute max-md:inset-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -50,22 +50,25 @@ export default function Hero() {
             fill
             priority
             className="object-cover object-center grayscale contrast-110"
-            sizes="50vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(33,43,57,0.15)] to-[rgba(33,43,57,0)]" />
+          {/* Desktop gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[rgba(33,43,57,0.15)] to-[rgba(33,43,57,0)] md:block hidden" />
+          {/* Mobile dark overlay — bottom-heavy for text legibility */}
+          <div className="absolute inset-0 md:hidden bg-gradient-to-t from-[rgba(10,10,10,0.92)] via-[rgba(10,10,10,0.55)] to-[rgba(10,10,10,0.15)]" />
         </div>
       </motion.div>
 
-      {/* Right: Off-white panel */}
+      {/* Right: Off-white panel — desktop only */}
       <motion.div
-        className="bg-bg flex flex-col justify-end pt-[clamp(100px,10vh,140px)] px-[clamp(28px,5vw,72px)] pb-[clamp(48px,6vh,80px)] gap-[clamp(24px,3vw,40px)] relative overflow-hidden max-md:row-start-2 max-md:pt-[clamp(80px,12vw,120px)] max-md:px-[clamp(20px,5vw,40px)] max-md:pb-12"
+        className="bg-bg flex flex-col justify-end pt-[clamp(100px,10vh,140px)] px-[clamp(28px,5vw,72px)] pb-[clamp(48px,6vh,80px)] gap-[clamp(24px,3vw,40px)] relative overflow-hidden max-md:hidden"
         custom={0.8}
         initial="hidden"
         animate="visible"
         variants={fadeVariants}
       >
         {/* Secondary editorial photo */}
-        <div className="relative w-full aspect-[4/3] overflow-hidden max-md:hidden">
+        <div className="relative w-full aspect-[4/3] overflow-hidden">
           <Image
             src="/images/hero-secondary.png"
             alt="Barbern klipper med precision"
@@ -113,36 +116,72 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Overlapping headline — spans both panels */}
+      {/* Overlapping headline — desktop: spans both panels */}
       <motion.div
-        className="absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10 pointer-events-none text-center px-[clamp(8px,2vw,24px)] max-md:top-[45%]"
+        className="absolute top-1/2 left-0 right-0 -translate-y-1/2 z-10 pointer-events-none text-center px-[clamp(8px,2vw,24px)] max-md:hidden"
         initial="hidden"
         animate="visible"
         variants={headlineVariants}
         aria-hidden="false"
       >
         <h1
-          className="font-display text-display-hero uppercase text-gold hero-text-pop flex flex-col md:block"
+          className="font-display text-display-hero uppercase text-gold hero-text-pop"
           style={{ lineHeight: 0.85 }}
         >
-          <motion.span 
-            className="block md:inline"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Just
-          </motion.span>
-          <span className="hidden md:inline">&nbsp;</span>
-          <motion.span 
-            className="block md:inline"
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          >
-            Barbers
-          </motion.span>
+          Just Barbers
         </h1>
+      </motion.div>
+
+      {/* Mobile-only: bottom-anchored content overlay */}
+      <motion.div
+        className="absolute bottom-0 left-0 right-0 z-10 md:hidden flex flex-col items-start px-8 pb-14 gap-6"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {/* H1 — large, gold, dramatic */}
+        <motion.h1
+          className="font-display text-display-hero uppercase text-gold leading-[0.85] tracking-[0.04em]"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        >
+          Just<br />Barbers
+        </motion.h1>
+
+        {/* Gold rule separator */}
+        <motion.div
+          className="h-px w-10 bg-gold opacity-70"
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ scaleX: 1, opacity: 0.7 }}
+          style={{ transformOrigin: "left" }}
+          transition={{ duration: 0.6, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
+        />
+
+        {/* Tagline */}
+        <motion.p
+          className="font-body text-[15px] font-light italic text-white/85 leading-[1.5] tracking-[0.01em]"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.75, ease: [0.16, 1, 0.3, 1] }}
+        >
+          En ren klippning. Ett ärligt hantverk.
+        </motion.p>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <a
+            href="#kontakt"
+            id="hero-cta-mobile"
+            className="inline-block font-body text-[11px] font-medium tracking-[0.2em] uppercase text-bg bg-gold px-9 py-4 cursor-pointer transition-[background-color,transform] duration-fast ease will-change-transform active:translate-y-0.5"
+          >
+            Boka tid
+          </a>
+        </motion.div>
       </motion.div>
     </section>
   );
